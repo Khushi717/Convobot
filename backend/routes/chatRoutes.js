@@ -63,3 +63,4 @@ Never say you are ChatGPT or OpenAI.
     res.status(500).json({ reply: "Server error" });
   }
 };
+export default router;
