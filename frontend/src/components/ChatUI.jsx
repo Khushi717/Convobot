@@ -237,19 +237,23 @@ function ChatUI() {
     return () => { clearInterval(id); effect?.destroy(); };
   }, []);
 
-  const callAPI = async (msg) => {
-    try {
-      const res = await fetch("http://localhost:5000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg }),
-      });
-      const data = await res.json();
-      return data?.reply || "No response from AI";
-    } catch {
-      return "Server error — please try again.";
-    }
-  };
+const callAPI = async (msg) => {
+  try {
+    const res = await fetch("https://convobot-mbah.onrender.com/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: msg }) 
+    });
+
+    const data = await res.json();
+    return data?.reply || "No response from AI";
+
+  } catch {
+    return "Server error — please try again.";
+  }
+};
 
   const handleSend = async (text) => {
     const msg = (text ?? input).trim();
