@@ -10,7 +10,7 @@ export const generateResponse = async (message) => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "mistralai/mistral-7b-instruct",
+        model: "openai/gpt-4o-mini", 
         messages: [
           {
             role: "system",
@@ -25,6 +25,11 @@ export const generateResponse = async (message) => {
     });
 
     const data = await response.json();
+
+    if (!response.ok) {
+      console.error("OpenRouter Error:", data);
+      return "API Error";
+    }
 
     let reply =
       data?.choices?.[0]?.message?.content ||
