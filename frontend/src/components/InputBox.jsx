@@ -4,7 +4,9 @@ function InputBox({ onSend }) {
   const [input, setInput] = useState("");
 
   const handleSend = () => {
-    onSend(input);
+    if (!input.trim()) return;  
+
+    onSend(input);               
     setInput("");
   };
 
@@ -14,7 +16,9 @@ function InputBox({ onSend }) {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Type something..."
-        onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSend();
+        }}
       />
       <button onClick={handleSend}>➤</button>
     </div>

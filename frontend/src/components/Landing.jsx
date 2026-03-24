@@ -5,7 +5,6 @@ function Landing({ onStart }) {
   return (
     <div className="landing-container">
 
-      {/* 👇 REPLACE LOGO HERE */}
       <div className="logo-wrapper">
         <div className="ai-orb"></div>
       </div>
